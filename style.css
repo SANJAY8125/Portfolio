@@ -1,0 +1,330 @@
+:root {
+    --bg-color: #080808;
+    /* Deep matte black */
+    --card-bg: #1c1c1e;
+    /* Apple-style dark grey */
+    --card-hover: #2c2c2e;
+    --text-primary: #f5f5f7;
+    --text-secondary: #86868b;
+    --accent-color: #2997ff;
+    /* San Francisco Blue */
+    --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --radius: 28px;
+    /* Larger, smoother corners */
+    --gap: 24px;
+    --transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Simplier Stacking Context */
+html {
+    /* Reset html bg */
+    background-color: var(--bg-color);
+}
+
+body {
+    background-color: transparent;
+    /* Transparent to show canvas on HTML bg */
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow-x: hidden;
+}
+
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    /* Layer 0: Above HTML bg, Below Grid */
+    pointer-events: none;
+    opacity: 1;
+    /* Full visibility */
+}
+
+/* Mouse Spotlight Effect */
+body::before {
+    display: none;
+    /* Disable spotlight temporarily to isolate one effect */
+}
+
+/* Grid Layout */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 240px;
+    gap: var(--gap);
+    max-width: 1100px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    /* Layer 2: Top */
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 28px;
+    /* Key aesthetic details from image: No border, subtle inner light, dark shadow */
+    box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.1),
+        /* Top inner highlight */
+        0 20px 40px -20px rgba(0, 0, 0, 0.5);
+    /* Soft drop shadow */
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    background-color: var(--card-hover);
+    transform: scale(1.02);
+    /* Subtle scale up */
+    box-shadow:
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.15),
+        0 30px 60px -30px rgba(0, 0, 0, 0.6);
+}
+
+/* Card Sizes (Span utilities) */
+.col-span-2 {
+    grid-column: span 2;
+}
+
+.col-span-4 {
+    grid-column: span 4;
+}
+
+.row-span-2 {
+    grid-row: span 2;
+}
+
+/* Typography */
+h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: auto;
+    /* Push to bottom */
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-top: 12px;
+    opacity: 0.9;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+p,
+.text-secondary {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: auto;
+    /* Push to top */
+}
+
+/* Specific Card Styles */
+
+/* Profile Card */
+.profile-card {
+    justify-content: space-between;
+}
+
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200');
+    /* Real placeholder */
+    background-size: cover;
+    margin-bottom: 0;
+}
+
+/* Map/Location Card */
+.location-card {
+    padding: 0;
+}
+
+.map-bg {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://api.mapbox.com/styles/v1/mapbox/dark-v10/static/-122.4194,37.7749,12,0/600x600?access_token=pk.eyJ1IjoiZXhhbXBsZSIsImEiOiJjazl5b... "');
+    /* Use a static dark map image URL or CSS pattern */
+    background: #111 url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/San_Francisco_OpenStreetMap.png/640px-San_Francisco_OpenStreetMap.png') center/cover;
+    filter: grayscale(100%) invert(90%) contrast(150%);
+    /* Hacky dark mode map */
+    opacity: 0.4;
+}
+
+.location-text {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+}
+
+.location-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+    position: absolute;
+    inset: 0;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Project Cards */
+.project-card {
+    padding: 20px;
+}
+
+.project-preview {
+    flex-grow: 1;
+    background-color: #000;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.glow-orb {
+    width: 150%;
+    height: 150%;
+    position: absolute;
+    top: -25%;
+    left: -25%;
+    background: radial-gradient(circle, var(--orb-color, #4facfe) 0%, transparent 70%);
+    opacity: 0.8;
+    filter: blur(40px);
+}
+
+.project-card .project-img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    transition: var(--transition);
+    z-index: 0;
+}
+
+.project-card:hover .project-img {
+    opacity: 0.2;
+    transform: scale(1.05);
+}
+
+.project-content {
+    position: relative;
+    z-index: 1;
+    margin-top: auto;
+}
+
+/* Socials/Links */
+.social-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    transition: var(--transition);
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.social-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.social-icon {
+    width: 24px;
+    height: 24px;
+    background: var(--text-primary);
+    border-radius: 6px;
+    /* Placeholder icon */
+}
+
+/* Skills/List Cards */
+.skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.skill-item {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: 0.2s;
+}
+
+.skill-item:hover {
+    color: var(--text-primary);
+    transform: translateX(5px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+    }
+
+    .card {
+        min-height: 240px;
+    }
+
+    .col-span-2,
+    .col-span-4,
+    .row-span-2 {
+        grid-column: span 1;
+        grid-row: span 1;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

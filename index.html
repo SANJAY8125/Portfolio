@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio | Modern Grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+
+  <canvas id="bg-canvas"></canvas>
+  <div class="bento-grid">
+
+    <!-- 1. Profile (Top Left - Wide) -->
+    <div class="card col-span-2 row-span-1 profile-card">
+      <div class="avatar">ST</div>
+      <h1>Sanjay Thangavel</h1>
+    </div>
+
+    <!-- 2. Status (Top Middle - Square) -->
+    <div class="card location-card" style="justify-content: center;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 8px;">
+        <div style="width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e;"></div>
+        <span class="subtitle" style="margin: 0;">Status</span>
+      </div>
+      <h3>Open to Work</h3>
+    </div>
+
+    <!-- 3. Skills (Top Right - Vertical Span) -->
+    <div class="card row-span-2">
+      <span class="subtitle">Skills</span>
+      <div class="skill-list" style="margin-top: 1rem">
+        <div class="skill-item">UI/UX Design</div>
+        <div class="skill-item">React & Vue</div>
+        <div class="skill-item">Python</div>
+        <div class="skill-item">Node.js</div>
+        <div class="skill-item">Figma</div>
+        <div class="skill-item">Three.js</div>
+      </div>
+    </div>
+
+    <!-- 4. Resume (Row 2 - Square) -->
+    <a href="public/resume.pdf" target="_blank" class="card"
+      style="text-decoration: none; align-items: center; justify-content: center; cursor: pointer;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-primary)" stroke-width="1.5"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+        <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+      </svg>
+      <h3 style="margin-top: 1rem; font-size: 1.2rem;">Resume</h3>
+    </a>
+
+    <!-- 5. Project 2: VitalRoute (Row 2 - Square) -->
+    <div class="card project-card">
+      <div class="project-preview">
+        <div class="glow-orb" style="--orb-color: #6366f1"></div>
+      </div>
+      <span class="subtitle">Project</span>
+      <h2>VitalRoute</h2>
+    </div>
+
+    <!-- 6. Project 3: Aura (Row 3 - Wide for contrast) -->
+    <div class="card project-card">
+      <div class="project-preview">
+        <div class="glow-orb" style="--orb-color: #ec4899"></div>
+      </div>
+      <span class="subtitle">Project</span>
+      <h2>Aura</h2>
+    </div>
+
+    <!-- 7. Project 4 (Row 3) -->
+    <div class="card project-card">
+      <div class="project-preview">
+        <div class="glow-orb" style="--orb-color: #10b981"></div>
+      </div>
+      <span class="subtitle">Project</span>
+      <h2>Orion</h2>
+    </div>
+
+    <!-- 8. Connect (Row 3) -->
+    <div class="card col-span-2">
+      <span class="subtitle">Connect</span>
+      <h2 style="font-size: 2rem; margin: 12px 0;">Let's talk.</h2>
+      <div style="display: flex; gap: 16px; margin-top: auto; flex-wrap: wrap;">
+        <a href="mailto:sanjaytmhr@gmail.com" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          Email
+        </a>
+        <a href="https://www.linkedin.com/in/sanjay-thangavel-553402341/" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/SANJAY8125" class="social-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path
+              d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+            </path>
+          </svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <script type="module" src="/main.js"></script>
+</body>
+
+</html>
