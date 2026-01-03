@@ -165,8 +165,8 @@ p,
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=200&h=200');
-    /* Real placeholder */
+    background-image: url('/profile.png');
+    /* Updated to use local profile image */
     background-size: cover;
     margin-bottom: 0;
 }
