@@ -107,3 +107,14 @@ function animate() {
 // Start
 resize();
 animate();
+
+// Project Card Interaction
+const vitalRouteCard = document.getElementById('vitalroute-card');
+if (vitalRouteCard) {
+  vitalRouteCard.addEventListener('click', (e) => {
+    // Don't toggle if clicking the GitHub link directly
+    if (e.target.closest('.project-github-link')) return;
+
+    vitalRouteCard.classList.toggle('active');
+  });
+}

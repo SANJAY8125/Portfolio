@@ -281,6 +281,50 @@ p,
     color: var(--accent-color);
 }
 
+/* Project Description Overlay */
+.project-details {
+    position: absolute;
+    inset: 0;
+    background: rgba(28, 28, 30, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition);
+    z-index: 5;
+    text-align: center;
+}
+
+.project-details p {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+.project-card {
+    cursor: pointer;
+}
+
+.project-card.active .project-details {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.project-card.active .project-details p {
+    transform: translateY(0);
+}
+
+.project-card.active h2,
+.project-card.active .subtitle {
+    opacity: 0.1;
+}
+
 /* Socials/Links */
 .social-list {
     list-style: none;
