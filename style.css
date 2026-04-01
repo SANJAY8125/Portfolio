@@ -325,6 +325,11 @@ p,
     opacity: 0.1;
 }
 
+.project-card.active .project-github-link {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* Socials/Links */
 .social-list {
     list-style: none;
